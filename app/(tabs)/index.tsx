@@ -161,7 +161,19 @@ export default function Index() {
                 <PopularItem 
                   key={item.id}
                   item={item}
-                  onPress={() => {}}
+                  onPress={() => router.push({
+                    pathname: '/food-detail/[id]',
+                    params: { 
+                      id: item.id, 
+                      name: item.name, 
+                      description: item.description, 
+                      price: item.price.toString(),
+                      image_url: '',
+                      rating: '4.5',
+                      calories: '500',
+                      protein: '20'
+                    }
+                  })}
                 />
               ))}
             </ScrollView>
