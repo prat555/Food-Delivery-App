@@ -2,17 +2,35 @@ import { appwriteConfig } from "@/lib/appwrite";
 import { useCartStore } from "@/store/cart.store";
 import { MenuItem } from "@/type";
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { router } from 'expo-router';
 
-const MenuCard = ({ item: { $id, image_url, name, price, description }}: { item: MenuItem}) => {
+const MenuCard = ({ item: { $id, image_url, name, price, description, rating, calories, protein }}: { item: MenuItem}) => {
     const imageSource = typeof image_url === 'string' 
         ? { uri: `${image_url}?project=${appwriteConfig.projectId}` }
         : image_url;
     const { addItem } = useCartStore();
 
+    const handleCardPress = () => {
+        router.push({
+            pathname: '/food-detail/[id]',
+            params: { 
+                id: $id, 
+                name, 
+                description, 
+                price: price.toString(),
+                image_url: typeof image_url === 'string' ? image_url : '',
+                rating: rating?.toString() || '4.5',
+                calories: calories?.toString() || '500',
+                protein: protein?.toString() || '20'
+            }
+        });
+    };
+
     return (
         <TouchableOpacity 
             className="bg-white p-4 rounded-3xl" 
             style={Platform.OS === 'android' ? { elevation: 3, shadowColor: '#878787'}: {}}
+            onPress={handleCardPress}
         >
             <View className="items-center justify-center mb-4">
                 <Image 
