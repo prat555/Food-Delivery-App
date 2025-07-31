@@ -53,6 +53,22 @@ const Cart = () => {
             image_url: require('@/assets/images/buritto.png'),
             price: 22.99,
             quantity: 1
+        },
+        {
+            id: '4',
+            name: "Mozzarella Sticks",
+            description: "Crispy breaded cheese sticks with marinara sauce",
+            image_url: require('@/assets/images/mozarella-sticks.png'),
+            price: 15.99,
+            quantity: 1
+        },
+        {
+            id: '5',
+            name: "Fresh Garden Salad",
+            description: "Mixed greens with avocado and dressing",
+            image_url: require('@/assets/images/salad.png'),
+            price: 18.99,
+            quantity: 2
         }
     ];
 

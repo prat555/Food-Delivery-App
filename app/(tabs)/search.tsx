@@ -66,6 +66,76 @@ const Search = () => {
             rating: 4.6,
             calories: 550,
             category_name: "Burritos"
+        },
+        {
+            $id: '6',
+            name: "Mozzarella Sticks",
+            description: "Crispy breaded cheese sticks with marinara sauce",
+            image_url: require('@/assets/images/mozarella-sticks.png'),
+            price: 15.99,
+            rating: 4.4,
+            calories: 380,
+            category_name: "Sides"
+        },
+        {
+            $id: '7',
+            name: "BBQ Bacon Burger",
+            description: "Smoky BBQ sauce with crispy bacon",
+            image_url: require('@/assets/images/burger-one.png'),
+            price: 28.99,
+            rating: 4.6,
+            calories: 680,
+            category_name: "Burgers"
+        },
+        {
+            $id: '8',
+            name: "Margherita Pizza",
+            description: "Fresh tomatoes, mozzarella, and basil",
+            image_url: require('@/assets/images/pizza-one.png'),
+            price: 26.99,
+            rating: 4.5,
+            calories: 580,
+            category_name: "Pizzas"
+        },
+        {
+            $id: '9',
+            name: "Chicken Caesar Salad",
+            description: "Grilled chicken with crispy romaine and parmesan",
+            image_url: require('@/assets/images/salad.png'),
+            price: 21.99,
+            rating: 4.7,
+            calories: 420,
+            category_name: "Salads"
+        },
+        {
+            $id: '10',
+            name: "Beef Burrito Supreme",
+            description: "Seasoned beef with sour cream and guacamole",
+            image_url: require('@/assets/images/buritto.png'),
+            price: 24.99,
+            rating: 4.8,
+            calories: 640,
+            category_name: "Burritos"
+        },
+        {
+            $id: '11',
+            name: "Chicken Wings",
+            description: "Spicy buffalo wings with ranch dipping sauce",
+            image_url: require('@/assets/images/burger-one.png'),
+            price: 19.99,
+            rating: 4.6,
+            calories: 520,
+            category_name: "Sides"
+        },
+        {
+            $id: '12',
+            name: "Fish Tacos",
+            description: "Grilled fish with cabbage slaw and lime",
+            image_url: require('@/assets/images/buritto.png'),
+            price: 23.99,
+            rating: 4.5,
+            calories: 480,
+            category_name: "Tacos"
         }
     ];
 
@@ -73,7 +143,9 @@ const Search = () => {
         { $id: '1', name: "Burgers", description: "Juicy grilled burgers" },
         { $id: '2', name: "Pizzas", description: "Oven-baked cheesy pizzas" },
         { $id: '3', name: "Burritos", description: "Rolled Mexican delights" },
-        { $id: '4', name: "Sandwiches", description: "Stacked and stuffed sandwiches" }
+        { $id: '4', name: "Salads", description: "Fresh and healthy salads" },
+        { $id: '5', name: "Sides", description: "Tasty appetizers and sides" },
+        { $id: '6', name: "Tacos", description: "Authentic Mexican tacos" }
     ];
 
     const { data, refetch, loading } = useAppwrite({ fn: getMenu, params: { category, query, limit: 6 } });
