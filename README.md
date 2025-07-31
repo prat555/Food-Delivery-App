@@ -26,11 +26,11 @@ A modern React Native food delivery application built with Expo, featuring a cle
 ## 📸 Screenshots
 
 <div align="center">
-  <img src="./assets/images/1.jpg" alt="Login" width="200"/>
-  <img src="./assets/images/2.jpg" alt="Home" width="200"/>
-  <img src="./assets/images/3.jpg" alt="Search" width="200"/>
-  <img src="./assets/images/4.jpg" alt="Cart" width="200"/>
-  <img src="./assets/images/5.jpg" alt="Profile" width="200"/>
+  <img src="./assets/images/1.jpg" alt="Login" width="150"/>
+  <img src="./assets/images/2.jpg" alt="Home" width="150"/>
+  <img src="./assets/images/3.jpg" alt="Search" width="150"/>
+  <img src="./assets/images/4.jpg" alt="Cart" width="150"/>
+  <img src="./assets/images/5.jpg" alt="Profile" width="150"/>
 </div>
 
 ## 🚀 Getting Started
