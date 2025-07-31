@@ -26,11 +26,11 @@ A modern React Native food delivery application built with Expo, featuring a cle
 ## 📸 Screenshots
 
 <div align="center">
-  <img src="./assets/images/screenshot1.png" alt="Home Screen" width="200"/>
-  <img src="./assets/images/screenshot2.png" alt="Food Detail" width="200"/>
-  <img src="./assets/images/screenshot3.png" alt="Cart" width="200"/>
-  <img src="./assets/images/screenshot4.png" alt="Checkout" width="200"/>
-  <img src="./assets/images/screenshot5.png" alt="Order Confirmation" width="200"/>
+  <img src="./assets/images/1.jpg" alt="Login" width="200"/>
+  <img src="./assets/images/2.jpg" alt="Home" width="200"/>
+  <img src="./assets/images/3.jpg" alt="Search" width="200"/>
+  <img src="./assets/images/4.jpg" alt="Cart" width="200"/>
+  <img src="./assets/images/5.jpg" alt="Profile" width="200"/>
 </div>
 
 ## 🚀 Getting Started
@@ -38,9 +38,7 @@ A modern React Native food delivery application built with Expo, featuring a cle
 ### Prerequisites
 
 - Node.js (v16 or higher)
-- Expo CLI (`npm install -g @expo/cli`)
-- iOS Simulator (for iOS development) or Android Studio (for Android development)
-- Expo Go app on your physical device (optional)
+- Expo Go app on your physical device
 
 ### Installation
 
@@ -118,33 +116,12 @@ A modern React Native food delivery application built with Expo, featuring a cle
 - **Search**: Search and filter menu items
 - **Food Detail**: View item details and add customizations
 - **Cart**: Review selected items and quantities
-- **Checkout**: Complete payment and order
-- **Order Confirmation**: Track order status
 - **Profile**: User account and settings
 - **Authentication**: Sign in/up screens
 
 ## 🎨 Customization
 
 The app uses NativeWind for styling, which allows you to use Tailwind CSS classes in React Native. You can customize the theme in `tailwind.config.js`.
-
-## 🚀 Deployment
-
-This app can be deployed using:
-- **Expo Application Services (EAS)** for app store deployment
-- **Expo Web** for web deployment
-- **Replit** for development and testing
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgments
 
