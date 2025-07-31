@@ -1,50 +1,153 @@
-# Welcome to your Expo app 👋
+# Food Delivery App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern React Native food delivery application built with Expo, featuring a clean UI, seamless payment integration, and real-time order tracking.
 
-## Get started
+## 📱 Features
 
-1. Install dependencies
+- **Browse Menu**: Explore various food categories including burgers, pizzas, burritos, sandwiches, wraps, and bowls
+- **Food Customization**: Add toppings, sides, and customize your orders
+- **Cart Management**: Add, remove, and modify items in your cart
+- **Secure Payments**: Integrated Stripe payment processing
+- **Order Tracking**: Real-time order status updates and delivery tracking
+- **User Authentication**: Sign up and sign in functionality with Appwrite
+- **Search & Filter**: Find your favorite foods quickly
+- **Responsive Design**: Optimized for both iOS and Android devices
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React Native with Expo
+- **Styling**: NativeWind (Tailwind CSS for React Native)
+- **Navigation**: Expo Router with file-based routing
+- **State Management**: Zustand for cart and auth state
+- **Backend**: Appwrite for database and authentication
+- **Payments**: Stripe React Native SDK
+- **Icons & Images**: Expo Vector Icons and custom assets
+
+## 📸 Screenshots
+
+<div align="center">
+  <img src="./assets/images/screenshot1.png" alt="Home Screen" width="200"/>
+  <img src="./assets/images/screenshot2.png" alt="Food Detail" width="200"/>
+  <img src="./assets/images/screenshot3.png" alt="Cart" width="200"/>
+  <img src="./assets/images/screenshot4.png" alt="Checkout" width="200"/>
+  <img src="./assets/images/screenshot5.png" alt="Order Confirmation" width="200"/>
+</div>
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- Expo CLI (`npm install -g @expo/cli`)
+- iOS Simulator (for iOS development) or Android Studio (for Android development)
+- Expo Go app on your physical device (optional)
+
+### Installation
+
+1. **Clone the repository and install dependencies**
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. **Set up environment variables**
+
+   Create a `.env` file in the root directory and add your API keys:
+
+   ```env
+   EXPO_PUBLIC_APPWRITE_ENDPOINT=your_appwrite_endpoint
+   EXPO_PUBLIC_APPWRITE_PROJECT_ID=your_appwrite_project_id
+   EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+   ```
+
+3. **Start the development server**
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. **Run on your preferred platform**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   In the output, you'll find options to open the app in:
+   - [Development build](https://docs.expo.dev/develop/development-builds/introduction/)
+   - [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+   - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+   - [Expo Go](https://expo.dev/go) app on your physical device
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📁 Project Structure
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+├── app/                    # Main app screens (file-based routing)
+│   ├── (auth)/            # Authentication screens
+│   ├── (tabs)/            # Tab-based screens
+│   ├── food-detail/       # Food detail screens
+│   ├── checkout.tsx       # Checkout screen
+│   └── order-confirmation.tsx
+├── components/            # Reusable UI components
+├── lib/                   # Utilities and services
+│   ├── appwrite.ts       # Appwrite configuration
+│   ├── stripe.ts         # Stripe payment service
+│   └── data.ts           # Sample data
+├── store/                # State management
+├── assets/               # Images, icons, and fonts
+└── constants/            # App constants
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🔧 Configuration
 
-## Learn more
+### Appwrite Setup
 
-To learn more about developing your project with Expo, look at the following resources:
+1. Create an Appwrite project at [appwrite.io](https://appwrite.io)
+2. Set up the following collections:
+   - Users
+   - Categories
+   - Menu Items
+   - Customizations
+3. Update the `appwriteConfig` in `lib/appwrite.ts` with your database and collection IDs
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Stripe Setup
 
-## Join the community
+1. Create a Stripe account at [stripe.com](https://stripe.com)
+2. Get your API keys from the [Stripe Dashboard](https://dashboard.stripe.com/apikeys)
+3. Add your publishable key to the environment variables
+4. Set up a backend server for handling payment intents (see `README_STRIPE_SETUP.md`)
 
-Join our community of developers creating universal apps.
+## 📱 App Screens
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Home**: Browse featured items and categories
+- **Search**: Search and filter menu items
+- **Food Detail**: View item details and add customizations
+- **Cart**: Review selected items and quantities
+- **Checkout**: Complete payment and order
+- **Order Confirmation**: Track order status
+- **Profile**: User account and settings
+- **Authentication**: Sign in/up screens
+
+## 🎨 Customization
+
+The app uses NativeWind for styling, which allows you to use Tailwind CSS classes in React Native. You can customize the theme in `tailwind.config.js`.
+
+## 🚀 Deployment
+
+This app can be deployed using:
+- **Expo Application Services (EAS)** for app store deployment
+- **Expo Web** for web deployment
+- **Replit** for development and testing
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Built with [Expo](https://expo.dev)
+- UI inspired by modern food delivery apps
+- Icons and assets created for this project
