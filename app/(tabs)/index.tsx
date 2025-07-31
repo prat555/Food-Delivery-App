@@ -1,75 +1,200 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { router } from 'expo-router';
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import SearchBar from '@/components/SearchBar';
+import { images } from "@/constants";
+import useAuthStore from '@/store/auth.store';
 
-export default function HomeScreen() {
+const CategoryCard = ({ title, image, onPress }: { title: string, image: any, onPress?: () => void }) => (
+  <TouchableOpacity 
+    className="items-center mr-6"
+    onPress={onPress}
+  >
+    <View className="w-16 h-16 rounded-2xl bg-gray-50 items-center justify-center mb-2">
+      <Image 
+        source={image}
+        className="w-8 h-8"
+        resizeMode="contain"
+      />
+    </View>
+    <Text className="text-sm font-medium text-gray-700">{title}</Text>
+  </TouchableOpacity>
+);
+
+const PopularItem = ({ item, onPress }: { item: any, onPress?: () => void }) => (
+  <TouchableOpacity 
+    className="w-44 mr-6"
+    onPress={onPress}
+  >
+    <View className="w-full h-44 rounded-3xl bg-gray-50 mb-3 p-4">
+      <Image 
+        source={item.image}
+        className="w-full h-full"
+        resizeMode="contain"
+      />
+    </View>
+    <View>
+      <Text className="text-lg font-semibold text-gray-800">{item.name}</Text>
+      <Text className="text-sm text-gray-500 mb-2">{item.description}</Text>
+      <Text className="text-base font-semibold text-primary">${item.price}</Text>
+    </View>
+  </TouchableOpacity>
+);
+
+export default function Index() {
+  const { user } = useAuthStore();
+  
+  // Mock data
+  const mockCategories = [
+    { 
+      id: '1', 
+      name: "Burgers", 
+      icon: require('@/assets/images/burger-one.png')
+    },
+    { 
+      id: '2', 
+      name: "Pizza", 
+      icon: require('@/assets/images/pizza-one.png')
+    },
+    { 
+      id: '3', 
+      name: "Salads", 
+      icon: require('@/assets/images/salad.png')
+    },
+    { 
+      id: '4', 
+      name: "Sides", 
+      icon: require('@/assets/images/fries.png')
+    },
+  ];
+
+  const mockPopularItems = [
+    {
+      id: '1',
+      name: "Classic Cheeseburger",
+      description: "Beef patty with cheese",
+      image: require('@/assets/images/burger-one.png'),
+      price: 25.99
+    },
+    {
+      id: '2',
+      name: "Pepperoni Pizza",
+      description: "Classic pepperoni pizza",
+      image: require('@/assets/images/pizza-one.png'),
+      price: 30.99
+    },
+    {
+      id: '3',
+      name: "Mozzarella Sticks",
+      description: "Crispy cheese sticks",
+      image: require('@/assets/images/mozarella-sticks.png'),
+      price: 15.99
+    }
+  ];
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaView className="flex-1 bg-white">
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+        <View className="px-5">
+          {/* Header */}
+          <View className="flex-row items-center justify-between mt-5 mb-8">
+            <View>
+              <Text className="text-gray-500 text-base mb-1">Deliver to</Text>
+              <TouchableOpacity className="flex-row items-center">
+                <Text className="text-lg font-semibold mr-2">Home</Text>
+                <Image source={images.arrowDown} className="w-4 h-4" resizeMode="contain" />
+              </TouchableOpacity>
+            </View>
+            
+            <TouchableOpacity onPress={() => router.push("/(tabs)/profile")}>
+              <Image 
+                source={require("@/assets/images/avatar.png")}
+                className="w-12 h-12 rounded-full"
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* Search Bar */}
+          <View className="mb-8">
+            <SearchBar />
+          </View>
+
+          {/* Categories */}
+          <View className="mb-8">
+            <View className="flex-row items-center justify-between mb-4">
+              <Text className="text-xl font-semibold">Categories</Text>
+              <TouchableOpacity>
+                <Text className="text-primary">See All</Text>
+              </TouchableOpacity>
+            </View>
+            
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false}
+            >
+              {mockCategories.map(category => (
+                <CategoryCard 
+                  key={category.id}
+                  title={category.name}
+                  image={category.icon}
+                  onPress={() => router.push(`/(tabs)/search?category=${category.name.toLowerCase()}`)}
+                />
+              ))}
+            </ScrollView>
+          </View>
+
+          {/* Popular Items */}
+          <View className="mb-8">
+            <View className="flex-row items-center justify-between mb-4">
+              <Text className="text-xl font-semibold">Popular Now</Text>
+              <TouchableOpacity>
+                <Text className="text-primary">See All</Text>
+              </TouchableOpacity>
+            </View>
+            
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false}
+            >
+              {mockPopularItems.map(item => (
+                <PopularItem 
+                  key={item.id}
+                  item={item}
+                  onPress={() => {}}
+                />
+              ))}
+            </ScrollView>
+          </View>
+
+          {/* Special Offers */}
+          <View>
+            <Text className="text-xl font-semibold mb-4">Special Offers</Text>
+            
+            <View className="bg-primary/10 p-4 rounded-3xl mb-8">
+              <View className="flex-row items-center">
+                <View className="flex-1 pr-4">
+                  <Text className="text-2xl font-bold text-primary mb-2">
+                    30% OFF
+                  </Text>
+                  <Text className="text-base text-gray-700 mb-4">
+                    On your first order
+                  </Text>
+                  <TouchableOpacity className="bg-primary py-3 px-6 rounded-xl self-start">
+                    <Text className="text-white font-semibold">Order Now</Text>
+                  </TouchableOpacity>
+                </View>
+                
+                <Image 
+                  source={require("@/assets/images/burger-one.png")}
+                  className="w-32 h-32"
+                  resizeMode="contain"
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});

@@ -33,6 +33,14 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "foodapp",
+          "organization": "srm-ktr-5b"
+        }
       ]
     ],
     "experiments": {
