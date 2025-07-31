@@ -2,17 +2,6 @@
 
 A modern React Native food delivery application built with Expo, featuring a clean UI, seamless payment integration, and real-time order tracking.
 
-## 📱 Features
-
-- **Browse Menu**: Explore various food categories including burgers, pizzas, burritos, sandwiches, wraps, and bowls
-- **Food Customization**: Add toppings, sides, and customize your orders
-- **Cart Management**: Add, remove, and modify items in your cart
-- **Secure Payments**: Integrated Stripe payment processing
-- **Order Tracking**: Real-time order status updates and delivery tracking
-- **User Authentication**: Sign up and sign in functionality with Appwrite
-- **Search & Filter**: Find your favorite foods quickly
-- **Responsive Design**: Optimized for both iOS and Android devices
-
 ## 🛠️ Tech Stack
 
 - **Frontend**: React Native with Expo
