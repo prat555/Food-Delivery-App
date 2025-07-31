@@ -132,7 +132,10 @@ const Cart = () => {
                             />
                         </View>
 
-                        <CustomButton title="Order Now" />
+                        <CustomButton 
+                            title="Proceed to Checkout" 
+                            onPress={() => router.push('/checkout')}
+                        />
                     </View>
                 )}
             />

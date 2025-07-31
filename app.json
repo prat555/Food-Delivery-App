@@ -41,7 +41,8 @@
           "project": "foodapp",
           "organization": "srm-ktr-5b"
         }
-      ]
+      ],
+      "@stripe/stripe-react-native"
     ],
     "experiments": {
       "typedRoutes": true

@@ -1,55 +1,55 @@
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from "expo-router";
-import { useEffect } from "react";
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
+import 'react-native-reanimated/lib/reanimated2/js-reanimated';
+import { useColorScheme } from '@/hooks/useColorScheme';
+import { StripeProvider } from '@stripe/stripe-react-native';
+import { initializeStripe } from '@/lib/stripe';
 
-import useAuthStore from "@/store/auth.store";
-import * as Sentry from '@sentry/react-native';
-import './global.css';
+import '../global.css';
 
-Sentry.init({
-  dsn: 'https://16c3b5a7b60e29456c5f06f87a357eb2@o4509762863104000.ingest.de.sentry.io/4509762950594640',
+// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.preventAutoHideAsync();
 
-  // Adds more context data to events (IP address, cookies, user, etc.)
-  // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
-  sendDefaultPii: true,
-
-  // Configure Session Replay
-  replaysSessionSampleRate: 1,
-  replaysOnErrorSampleRate: 1,
-  integrations: [Sentry.mobileReplayIntegration(), Sentry.feedbackIntegration()],
-
-  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
-  // spotlight: __DEV__,
-});
-
-export default Sentry.wrap(function RootLayout() {
-  const { isLoading, fetchAuthenticatedUser } = useAuthStore();
-
-  const [fontsLoaded, error] = useFonts({
-    "QuickSand-Bold": require('../assets/fonts/Quicksand-Bold.ttf'),
-    "QuickSand-Medium": require('../assets/fonts/Quicksand-Medium.ttf'),
-    "QuickSand-Regular": require('../assets/fonts/Quicksand-Regular.ttf'),
-    "QuickSand-SemiBold": require('../assets/fonts/Quicksand-SemiBold.ttf'),
-    "QuickSand-Light": require('../assets/fonts/Quicksand-Light.ttf'),
+export default function RootLayout() {
+  const colorScheme = useColorScheme();
+  const [loaded] = useFonts({
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
   useEffect(() => {
-    if(error) throw error;
-    if(fontsLoaded) SplashScreen.hideAsync();
-  }, [fontsLoaded, error]);
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
 
   useEffect(() => {
-    fetchAuthenticatedUser()
+    // Initialize Stripe when the app loads
+    initializeStripe().catch(console.error);
   }, []);
 
-  if(!fontsLoaded || isLoading) return null;
+  if (!loaded) {
+    return null;
+  }
+
+  const publishableKey = process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY || '';
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <StripeProvider publishableKey={publishableKey}>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="food-detail/[id]" options={{ headerShown: false }} />
+          <Stack.Screen name="checkout" options={{ headerShown: false }} />
+          <Stack.Screen name="order-confirmation" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </StripeProvider>
   );
-});
-
-Sentry.showFeedbackWidget();
+}
